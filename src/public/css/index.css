@@ -1,0 +1,167 @@
+.form {
+    margin: 0px auto;
+    width: 50%;
+    text-align: left;
+    color:#BEB1A6;
+}
+
+
+
+input::placeholder {
+    color: #BEB1A6;
+}
+
+.form-table {
+    width: 972px;
+    height: 606px;
+    top: 247px;
+    
+}
+ .form-table td,th {
+     padding: 10px;
+
+ }
+
+
+ .your-name input,
+ .form__input input,
+ .form__input textarea,
+ .form__input--dropdown {
+     margin-bottom: 30px;
+
+ }
+
+.contact-form__heading {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 27px;
+    color: #BEB1A6;
+    font-family: 'Inika', serif;
+}
+
+.your-name input {
+    height: 40px;
+    background-color: #F4F4F4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 285px;
+    margin-bottom: 30px;
+}
+
+.your-name input:first-child {
+    margin-right: 50px;
+}
+
+.form__input--gender label {
+    margin-right: 30px;
+    
+
+}
+
+.form__input--gender input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+   
+}
+
+
+.form__input--gender input[type="radio"]:hover {
+    border-color: #4CAF50;
+}
+
+.form__input--gender input[type="radio"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.your-phone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 80%;
+   
+    text-align: center;
+   
+}
+
+.your-phone input {
+    height: 40px;
+    background-color: #F4F4F4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 80%;
+    text-align: center;
+    
+}
+
+.form__input input,
+.form__input textarea {
+    padding: 15px;
+    width: 80%;
+    max-width: 700px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: #F4F4F4;
+    margin-bottom: 40px;
+}
+
+.form__input--dropdown {
+    appearance: none;
+    width: 40%;
+    max-width: 300px;
+    height: 50px;
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    color: #BEB1A6;
+    border-radius: 4px;
+    background-color: #F4F4F4;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 6%22%3E%3Cpath d=%22M0 0L5 5L10 0H0Z%22 fill=%22%23BEB1A6%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px 12px;
+}
+
+.form__input textarea {
+    width: 80%;
+    height: 130px;
+    color: #BEB1A6;
+}
+
+
+.form__button {
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    width: 160px;
+    height: 46px;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 3px;
+    background-color: #8B7969;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+
+

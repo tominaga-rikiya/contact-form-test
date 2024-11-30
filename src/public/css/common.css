@@ -1,0 +1,21 @@
+/* body{
+    color: #8B7969;
+} */
+.header__inner {
+    width: 100%;
+    height: 100vh;
+    max-height: 100px;
+    border-bottom: 1px solid #E0DFDE;
+    display: flex;            
+    justify-content: center;   
+    align-items: center;      
+}
+
+.header__logo {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 40px;
+    border: #E0DFDE 1px;
+    color: #8B7969;
+    font-family: 'Inika', serif;
+}
