@@ -2,78 +2,83 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
-use App\Models\Category; 
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
-{    
-    public function index(Request $request)
+{
+    // フォームページ
+    public function index()
     {
-        $query = Contact::query();
-
-        // name
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
-        }
-
-        // email
-        if ($request->filled('email')) {
-            $query->where('email', 'like', '%' . $request->email . '%');
-        }
-
-        // gender
-        if ($request->filled('gender')) {
-            $query->where('gender', $request->gender);
-        }
-
-        // inquiry_type
-        if ($request->filled('inquiry_type')) {
-            $query->where('inquiry_type', 'like', '%' . $request->inquiry_type . '%');
-        }
-
-        // date
-        if ($request->filled('date')) {
-            $query->whereDate('created_at', $request->date);
-        }
-
-        $contacts = $query->paginate(7);
-
-        $categories = Category::all();
-
-        return view('contacts.index', compact('contacts', 'categories'));
+        return view('contacts.index');
     }
 
+    // 確認画面
+    public function confirm(Request $request)
+    {
+        // バリデーションをここで行う場合
+        $validated = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'gender' => 'required',
+            'email' => 'required|email',
+            'tel1' => 'required|numeric',
+            'tel2' => 'required|numeric',
+            'tel3' => 'required|numeric',
+            'address' => 'required|string',
+            'building' => 'required|string',
+            'inquiry_type' => 'required',
+            'content' => 'required|string|max:120',
+        ]);
 
+        // セッションに入力データを保存
+        $request->session()->flash('form_data', $validated);
 
+        // 入力データを確認画面に渡す
+        return view('contacts.confirm', compact('validated'));
+        return back()->withErrors($validator)->withInput();
 
-
-
-
-// public function index()
-// {
-//   return view('register');
-// }
-
-
-
-  //   public function index()
-  // {
-  //   $contacts = Contact::all();
-  //   return view('index',compact('contacts'));
-  // }
-
-   public function confirm(Request $request)
-     {
-      $contact = $request->only(['last_name', 'first_name', 'gender','email', 'tel', 'address','building', 'detail']);
-         return view('confiem',compact('contact'));
     }
 
+    // 送信処理
     public function store(ContactRequest $request)
     {
-      $contact = $request->only(['last_name', 'first_name', 'gender','email', 'tel', 'address','building','inquiry_type', 'detail']);
-       Contact::create($contact);
-         return view('thanks');
-    }
+        $validated = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'gender' => 'required',
+            'email' => 'required|email',
+            'tel1' => 'required|numeric|digits:4',
+            'tel2' => 'required|numeric|digits:4',
+            'tel3' => 'required|numeric|digits:4',
+            'address' => 'required|string',
+            'building' => 'required|string',
+            'inquiry_type' => 'required',
+            'content' => 'required|string|max:120',
+        ]);
 
+        Contact::create([
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'gender' => $validated['gender'],
+            'email' => $validated['email'],
+            'tel' => $validated['tel1'] . '-' . $validated['tel2'] . '-' . $validated['tel3'],  
+            'address' => $validated['address'],
+            'building' => $validated['building'],
+            'inquiry_type' => $validated['inquiry_type'],
+            'content' => $validated['content'],
+        ]);
+        
+        $request->session()->forget('form_data');
+
+        SendEmailJob::dispatchSync($emailData); 
+        return redirect()->route('thanks');
+    }
+    public function thanks()
+    {
+        return view('contacts.thanks');  
+    }
 }
+

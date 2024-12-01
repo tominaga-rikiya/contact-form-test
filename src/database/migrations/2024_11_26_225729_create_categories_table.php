@@ -18,6 +18,10 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::table('categories', function (Blueprint $table) {
+            $table->string('content');
+        });
     }
 
     /**
@@ -27,11 +31,10 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('content');
+        });
+
         Schema::dropIfExists('categories');
     }
 }
-
-
-
-
-

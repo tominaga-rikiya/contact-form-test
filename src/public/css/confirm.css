@@ -1,14 +1,53 @@
-.confirm__content {
+.form-table {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
+    color: #8B7969;
 }
 
-.confirm__heading {
+.contact-form__heading {
     margin-bottom: 40px;
     text-align: center;
+    font-size: 27px;
+    color: #BEB1A6;
+    font-family: 'Inika', serif;
 }
 
+table {
+    border: 2px solid #000;
+    /* 外枠の太さを5px、色を黒に設定 */
+    border-collapse: collapse;
+    /* 枠線を重ねて表示 */
+    width: 100%;
+    height: 70%;
+    margin-right: 60px;
+ 
+}
+
+td,th{
+    padding: 20px;
+        /* セル内の余白 */
+}
+
+td{
+    width: 305px;
+        height: 69.92px;
+        top: 247px;
+        left: 273px;
+        gap: 0px;
+        opacity: 0px;
+       color: ;#FFFFFF;
+}
+
+th{
+    width: 669px;
+        height: 0px;
+        top: 69.92px;
+        gap: 0px;
+        border: 1px 0px 0px 0px;
+        opacity: 0px;
+        angle: -0.11 deg;
+}
 .form {
     margin: 0 auto;
     width: 70%;

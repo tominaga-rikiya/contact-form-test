@@ -31,14 +31,16 @@ Route::post('login', [AuthController::class, 'login']);
 //管理ページ
 Route::middleware(['auth'])->get('/admin', [DashboardController::class, 'index'])->name('admin');
 
-// routes/web.php
-Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
-Route::get('/contacts/search', [ContactController::class, 'search'])->name('contacts.search');
-Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+//お問い合わせフォームページ
+Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
+
+//確認ページ
+Route::get('contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
+Route::post('contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
 
 
+// フォーム送信後のルート
+Route::post('contacts/thanks', [ContactController::class, 'thanks'])->name('contacts.thanks');
 
-//  Route::get('/', [ContactController::class, 'index']);
- Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
- Route::post('/contacts', [ContactController::class, 'store']);
- Route::post('/thanks', [ContactController::class, 'thanks']);
+//サンクス
+Route::get('/contacts/thanks', [ContactController::class, 'thanks'])->name('contacts.thanks');
